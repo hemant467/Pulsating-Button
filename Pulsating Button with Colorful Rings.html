@@ -1,0 +1,154 @@
+Pulsating Button with Colorful Rings
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulsating Button with Colorful Rings</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000000; /* Black background */
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+
+        .pulse-button {
+            display: block;
+            width: 200px;
+            height: 50px;
+            font-size: 1.3em;
+            font-weight: light;
+            font-family: 'Trebuchet MS', sans-serif;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 50px;
+            letter-spacing: -1px;
+            color: yellow; /* Text color */
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #ff0000, #00ff00, #0000ff); /* Gradient colors */
+            background-size: 300% 100%; /* Extend gradient for animation */
+            cursor: pointer;
+            box-shadow: 0 0 0 0 rgba(255, 255, 0, 0.5); /* Initial yellow shadow */
+            position: relative;
+            z-index: 1;
+            -webkit-animation: pulse 1.5s infinite, gradientShift 2s infinite, shadowShift 2s infinite;
+            animation: pulse 1.5s infinite, gradientShift 2s infinite, shadowShift 2s infinite;
+        }
+
+        .pulse-button:hover {
+            -webkit-animation: none;
+            animation: none;
+        }
+
+        .pulse-button::before,
+        .pulse-button::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            border: 5px solid; /* Bold ring border */
+            z-index: -1;
+            opacity: 0.7; /* Make rings slightly transparent for better visual effect */
+        }
+
+        .pulse-button::before {
+            width: 250px;
+            height: 250px;
+            top: -100px;
+            left: -25px;
+            animation: ringPulse 2s infinite, ringColorShift 4s infinite;
+        }
+
+        .pulse-button::after {
+            width: 300px;
+            height: 300px;
+            top: -125px;
+            left: -50px;
+            animation: ringPulse 2s infinite 1s, ringColorShift 4s infinite 2s; /* Delay for second ring */
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.9);
+                box-shadow: 0 0 0 0 rgba(255, 255, 0, 0.5); /* Consistent yellow shadow */
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 50px rgba(255, 255, 0, 0); /* Expanding shadow */
+            }
+            100% {
+                transform: scale(0.9);
+                box-shadow: 0 0 0 0 rgba(255, 255, 0, 0); /* Reset shadow */
+            }
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 0%;
+            }
+        }
+
+        @keyframes shadowShift {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 0 50px rgba(0, 255, 0, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 0, 255, 0.5);
+            }
+        }
+
+        @keyframes ringPulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes ringColorShift {
+            0% {
+                border-color: #ff0000;
+            }
+            33% {
+                border-color: #00ff00;
+            }
+            66% {
+                border-color: #0000ff;
+            }
+            100% {
+                border-color: #ff0000;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="pulse-button">💝 Hemant Katta ⚔️</span>
+    </div>
+</body>
+</html>
